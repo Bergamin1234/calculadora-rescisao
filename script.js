@@ -146,11 +146,37 @@ function exibirResultados(res) {
     if (res.multaFgts > 0) html += `<li><span>Multa 40% FGTS (Aprox):</span> <strong class="positive">${formatBRL(res.multaFgts)}</strong></li>`;
     if (res.totalDescontos > 0) html += `<li><span>Descontos (INSS/Aviso):</span> <strong class="negative">-${formatBRL(res.totalDescontos)}</strong></li>`;
     
-    html += `</ul><div class="total"><span>Total Líquido:</span> <span>${formatBRL(res.totalLiquido)}</span></div>`;
+    html += `</ul><div class="total"><span>Total Líquido Estimado:</span> <span>${formatBRL(res.totalLiquido)}</span></div>`;
+    html += `
+        <div class="results-actions">
+            <button type="button" class="btn-action" onclick="window.print()">🖨️ Imprimir / Salvar PDF</button>
+            <button type="button" class="btn-action" id="btn-copiar">📋 Copiar Resumo</button>
+        </div>
+    `;
     
     container.innerHTML = html;
     container.classList.remove('hidden');
     container.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+    const btnCopiar = document.getElementById('btn-copiar');
+    if (btnCopiar) {
+        btnCopiar.addEventListener('click', () => {
+            const texto = `Resumo da Rescisão CLT:\n` +
+                `Saldo de Salário: ${formatBRL(res.saldoSalario)}\n` +
+                `13º Salário: ${formatBRL(res.decimoTerceiro)}\n` +
+                `Férias + 1/3: ${formatBRL((res.feriasVencidas || 0) + (res.tercoFeriasVencidas || 0) + (res.feriasProporcionais || 0) + (res.tercoFeriasProporcionais || 0))}\n` +
+                `Aviso Prévio: ${formatBRL(res.valorAvisoIndenizado)}\n` +
+                `Multa FGTS: ${formatBRL(res.multaFgts)}\n` +
+                `Descontos: -${formatBRL(res.totalDescontos)}\n` +
+                `Total Líquido: ${formatBRL(res.totalLiquido)}`;
+            
+            navigator.clipboard.writeText(texto).then(() => {
+                const originalText = btnCopiar.innerText;
+                btnCopiar.innerText = '✅ Resumo Copiado!';
+                setTimeout(() => { btnCopiar.innerText = originalText; }, 2000);
+            });
+        });
+    }
 }
 
 // Para exportação em ambiente de teste Node.js

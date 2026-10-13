@@ -3,60 +3,221 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Calculadora de Rescisão Trabalhista CLT</title>
-    <meta name="description" content="Calculadora de rescisão exata. Ferramenta online para calcular rescisão online e cálculo de acerto trabalhista CLT de forma rápida e segura.">
-    <meta name="keywords" content="calculadora de rescisão exata, calcular rescisão online, cálculo de acerto trabalhista CLT">
+    <title>Calculadora de Rescisão Trabalhista CLT - Cálculo Exato Online</title>
+    <meta name="description" content="Calculadora de rescisão exata. Simule online e grátis seu acerto trabalhista CLT: férias proporcionais, 13º salário, aviso prévio e multa de 40% do FGTS.">
+    <meta name="keywords" content="calculadora de rescisão exata, calcular rescisão online, cálculo de acerto trabalhista CLT, rescisão CLT, saldo de salário, FGTS 40%">
+    <meta name="author" content="Calculadora CLT">
+    <link rel="canonical" href="https://bergamin1234.github.io/">
     <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Google AdSense -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1604324281573472" crossorigin="anonymous"></script>
 </head>
 <body>
-    <main class="container">
-        <header>
-            <h1>Cálculo de Rescisão CLT</h1>
-            <p>Descubra o valor exato do seu acerto trabalhista.</p>
-        </header>
-
-        <form id="rescisao-form">
-            <div class="form-group">
-                <label for="salario">Salário Bruto (R$)</label>
-                <input type="number" id="salario" name="salario" step="0.01" min="0" required placeholder="Ex: 3500.00">
-            </div>
-
-            <div class="form-group">
-                <label for="data-inicio">Data de Início</label>
-                <input type="date" id="data-inicio" name="data-inicio" required>
-            </div>
-
-            <div class="form-group">
-                <label for="data-demissao">Data de Demissão</label>
-                <input type="date" id="data-demissao" name="data-demissao" required>
-            </div>
-
-            <div class="form-group">
-                <label for="motivo">Motivo da Demissão</label>
-                <select id="motivo" name="motivo" required>
-                    <option value="sem_justa_causa">Demissão sem justa causa</option>
-                    <option value="pedido_demissao">Pedido de demissão</option>
-                    <option value="justa_causa">Demissão por justa causa</option>
-                </select>
-            </div>
-
-            <div class="form-group">
-                <label for="aviso-previo">Aviso Prévio</label>
-                <select id="aviso-previo" name="aviso-previo" required>
-                    <option value="trabalhado">Trabalhado</option>
-                    <option value="indenizado">Indenizado</option>
-                    <option value="nao_cumprido">Não cumprido (Descontado)</option>
-                </select>
-            </div>
-
-            <button type="submit" class="btn-calcular">Calcular Rescisão</button>
-        </form>
-
-        <div id="results" class="results-container hidden">
-            <!-- Results injected via JS -->
+    <header class="site-nav">
+        <div class="nav-content">
+            <a href="index.html" class="logo">
+                <span class="logo-icon">📊</span> Calculadora CLT
+            </a>
+            <nav>
+                <a href="#calculadora" class="nav-link">Calculadora</a>
+                <a href="#como-funciona" class="nav-link">Como Funciona</a>
+                <a href="#tabela-direitos" class="nav-link">Direitos</a>
+                <a href="#faq" class="nav-link">Dúvidas</a>
+                <a href="privacidade.html" class="nav-link">Privacidade</a>
+            </nav>
         </div>
-    </main>
+    </header>
+
+    <div class="hero-section">
+        <h1>Calculadora de Rescisão Trabalhista CLT</h1>
+        <p class="subtitle">Faça o cálculo exato do seu acerto trabalhista online de acordo com a legislação vigente.</p>
+    </div>
+
+    <div class="main-wrapper">
+        <main class="container" id="calculadora">
+            <div class="card-header">
+                <h2>Simular Acerto Trabalhista</h2>
+                <p>Preencha os dados do contrato para calcular as verbas rescisórias:</p>
+            </div>
+
+            <form id="rescisao-form">
+                <div class="form-group">
+                    <label for="salario">Salário Bruto (R$)</label>
+                    <input type="number" id="salario" name="salario" step="0.01" min="0" required placeholder="Ex: 3500.00">
+                    <small class="helper-text">Último salário registrado em carteira</small>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="data-inicio">Data de Admissão</label>
+                        <input type="date" id="data-inicio" name="data-inicio" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="data-demissao">Data de Demissão</label>
+                        <input type="date" id="data-demissao" name="data-demissao" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="motivo">Motivo da Demissão</label>
+                    <select id="motivo" name="motivo" required>
+                        <option value="sem_justa_causa">Demissão sem justa causa (pelo empregador)</option>
+                        <option value="pedido_demissao">Pedido de demissão (pelo empregado)</option>
+                        <option value="justa_causa">Demissão com justa causa</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="aviso-previo">Aviso Prévio</label>
+                    <select id="aviso-previo" name="aviso-previo" required>
+                        <option value="trabalhado">Trabalhado</option>
+                        <option value="indenizado">Indenizado (pela empresa)</option>
+                        <option value="nao_cumprido">Não cumprido / Dispensado (desconto)</option>
+                    </select>
+                </div>
+
+                <button type="submit" class="btn-calcular">Calcular Rescisão</button>
+            </form>
+
+            <div id="results" class="results-container hidden">
+                <!-- Resultados injetados via JS -->
+            </div>
+        </main>
+
+        <!-- Seções Informativas e Educativas para SEO e Qualidade AdSense -->
+        <aside class="content-section" id="como-funciona">
+            <h2>Como funciona o Cálculo da Rescisão Trabalhista?</h2>
+            <p>A rescisão do contrato de trabalho sob as regras da Consolidação das Leis do Trabalho (CLT) envolve o pagamento de diversas verbas rescisórias que variam conforme o motivo do término do vínculo empregatício.</p>
+
+            <div class="info-grid">
+                <div class="info-card">
+                    <h3>💵 Saldo de Salário</h3>
+                    <p>Corresponde aos dias efetivamente trabalhados no mês do desligamento. O valor diário é obtido dividindo o salário bruto por 30 e multiplicando pelos dias trabalhados.</p>
+                </div>
+                <div class="info-card">
+                    <h3>📅 13º Salário Proporcional</h3>
+                    <p>O trabalhador tem direito a 1/12 do 13º salário para cada mês em que trabalhou 15 dias ou mais dentro do respectivo ano-calendário.</p>
+                </div>
+                <div class="info-card">
+                    <h3>🏖️ Férias Vencidas e Proporcionais</h3>
+                    <p>Inclui as férias que ainda não foram gozadas e a fração proporcional do período aquisitivo atual, ambas acrescidas do terço constitucional (+1/3).</p>
+                </div>
+                <div class="info-card">
+                    <h3>🛡️ Multa de 40% do FGTS</h3>
+                    <p>Na demissão sem justa causa, o empregador deve pagar uma multa rescisória de 40% sobre todos os depósitos efetuados no Fundo de Garantia ao longo do contrato.</p>
+                </div>
+            </div>
+
+            <section id="tabela-direitos" class="rights-table-section">
+                <h2>Quadro Resumo de Direitos por Motivo de Saída</h2>
+                <div class="table-responsive">
+                    <table class="rights-table">
+                        <thead>
+                            <tr>
+                                <th>Direito Trabalhista</th>
+                                <th>Sem Justa Causa</th>
+                                <th>Pedido de Demissão</th>
+                                <th>Com Justa Causa</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Saldo de Salário</td>
+                                <td><span class="badge-sim">Sim</span></td>
+                                <td><span class="badge-sim">Sim</span></td>
+                                <td><span class="badge-sim">Sim</span></td>
+                            </tr>
+                            <tr>
+                                <td>Aviso Prévio</td>
+                                <td><span class="badge-sim">Sim</span></td>
+                                <td><span class="badge-nao">A cumprir / Desconto</span></td>
+                                <td><span class="badge-nao">Não</span></td>
+                            </tr>
+                            <tr>
+                                <td>13º Salário Proporcional</td>
+                                <td><span class="badge-sim">Sim</span></td>
+                                <td><span class="badge-sim">Sim</span></td>
+                                <td><span class="badge-nao">Não</span></td>
+                            </tr>
+                            <tr>
+                                <td>Férias Proporcionais + 1/3</td>
+                                <td><span class="badge-sim">Sim</span></td>
+                                <td><span class="badge-sim">Sim</span></td>
+                                <td><span class="badge-nao">Não</span></td>
+                            </tr>
+                            <tr>
+                                <td>Férias Vencidas + 1/3</td>
+                                <td><span class="badge-sim">Sim</span></td>
+                                <td><span class="badge-sim">Sim</span></td>
+                                <td><span class="badge-sim">Sim</span></td>
+                            </tr>
+                            <tr>
+                                <td>Multa de 40% do FGTS</td>
+                                <td><span class="badge-sim">Sim</span></td>
+                                <td><span class="badge-nao">Não</span></td>
+                                <td><span class="badge-nao">Não</span></td>
+                            </tr>
+                            <tr>
+                                <td>Saque do FGTS</td>
+                                <td><span class="badge-sim">Sim</span></td>
+                                <td><span class="badge-nao">Não</span></td>
+                                <td><span class="badge-nao">Não</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <section id="faq" class="faq-section">
+                <h2>Perguntas Frequentes (FAQ)</h2>
+                <div class="faq-item">
+                    <h4>Qual o prazo para pagamento das verbas rescisórias?</h4>
+                    <p>De acordo com a Reforma Trabalhista (Art. 477 da CLT), o pagamento de todas as verbas da rescisão deve ser efetuado em até <strong>10 dias corridos</strong> a partir do término do contrato de trabalho, independentemente do tipo de aviso prévio.</p>
+                </div>
+                <div class="faq-item">
+                    <h4>Como funciona o Aviso Prévio Proporcional?</h4>
+                    <p>Conforme a Lei nº 12.506/2011, além dos 30 dias regulares, são adicionados 3 dias por ano completo de serviço na mesma empresa, podendo chegar a até 90 dias no total.</p>
+                </div>
+                <div class="faq-item">
+                    <h4>O cálculo online substitui a homologação formal?</h4>
+                    <p>Esta calculadora serve como um simulador orientativo e confiável para fins de estimativa. Valores exatos podem variar com base em acordos coletivos sindicais, médias de horas extras ou adicionais específicos.</p>
+                </div>
+            </section>
+        </aside>
+    </div>
+
+    <footer class="site-footer">
+        <div class="footer-container">
+            <div class="footer-col">
+                <span class="logo-icon">📊</span> <strong>Calculadora de Rescisão CLT</strong>
+                <p>Ferramenta gratuita e online para simulação de acerto trabalhista de acordo com as leis brasileiras.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Navegação</h4>
+                <ul>
+                    <li><a href="#calculadora">Calculadora Online</a></li>
+                    <li><a href="#como-funciona">Como Funciona</a></li>
+                    <li><a href="#tabela-direitos">Tabela de Direitos</a></li>
+                    <li><a href="#faq">Perguntas Frequentes</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Institucional e Legal</h4>
+                <ul>
+                    <li><a href="privacidade.html">Política de Privacidade</a></li>
+                    <li><a href="termos.html">Termos de Uso</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 Calculadora de Rescisão Trabalhista CLT. Operando 100% no lado do cliente.</p>
+        </div>
+    </footer>
+
     <script src="script.js"></script>
 </body>
 </html>
